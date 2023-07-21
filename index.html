@@ -149,94 +149,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/21/sywget/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="aip">
-      <meta itemprop="description" content="闻见学行">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="aip的天马行空站">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/07/21/sywget/" class="post-title-link" itemprop="url">Windows系统使用wget批量下载故宫壁纸</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-07-21 15:32:16" itemprop="dateCreated datePublished" datetime="2023-07-21T15:32:16+08:00">2023-07-21</time>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;故宫博物院官网提供了大量精美的壁纸，主题包括铭刻、金银锡器、家具、绘画、陶瓷、法书、青铜器、古建、文房用品、织绣、珐琅、玺印、雕塑、玉石器、漆器、钟表仪器、玻璃器、竹木牙角匏、宫廷宗教、首饰、武备仪仗、音乐戏曲、生活器具、外国文物等。然而，对于不会编程而无法利用爬虫爬取网站的朋友，想要将这些优美的中华文明元素壁纸悉数下载是一个庞大的工程，况且当今大部分网站都设置了反爬虫机制。此文教大家利用wget这样简单易学的方式批量下载资源，对计算机了解甚浅的朋友也可轻松掌握。</p>
-<h2 id="分析图片下载地址"><a href="#分析图片下载地址" class="headerlink" title="分析图片下载地址"></a>分析图片下载地址</h2><p>&emsp;&emsp;故宫博物院官网的壁纸页面是<a target="_blank" rel="noopener" href="https://www.dpm.org.cn/lights/royal.html%E3%80%82%E6%88%91%E4%BB%AC%E5%85%88%E6%9F%A5%E7%9C%8B%E4%BB%BB%E6%84%8F%E4%B8%80%E5%BC%A0%E5%A3%81%E7%BA%B8%EF%BC%8C%E7%82%B9%E5%87%BB%E2%80%9C%E6%B8%85">https://www.dpm.org.cn/lights/royal.html。我们先查看任意一张壁纸，点击“清</a> 宜兴窑炉均釉茶壶”中的“下载壁纸”<br><br><img src="https://i.niupic.com/images/2023/07/21/byEk.png"><br><br>&emsp;&emsp;因为笔者的显示器分辨率是1920×1080（不知道屏幕分辨率的朋友可以用”Win+R&#x3D;&gt;系统&#x3D;&gt;屏幕”查看），所以这里就选择了尺寸为1920×1080的壁纸。直接点击“1920×1080”，浏览器弹出开始下载图片文件的提示框，说明此网站下载图片不要求我们登录账号或填写验证码，nice<br><br><img src="https://i.niupic.com/images/2023/07/21/byEl.png"><br><br>&emsp;&emsp;鼠标移动到“1920×1080”处，利用浏览器自带的“审查元素”（即“检查”）功能分析图片文件的下载链接<br><br><img src="https://i.niupic.com/images/2023/07/21/byEm.png"><br><br>&emsp;&emsp;我们成功找到了图片文件的下载链接<br><br><img src="https://i.niupic.com/images/2023/07/21/byEn.png"><br><br>&emsp;&emsp;使用Chrome浏览器的朋友可以直接按下Ctrl+J，在“下载内容”界面找到图片文件的下载链接<br><br><img src="https://i.niupic.com/images/2023/07/21/byEo.png"><br><br>&emsp;&emsp;下面再以相同方法查看前一张图片文件的下载地址，我们点击“清 任熊画姚大梅诗意册其一”中的“下载壁纸”<br><br><img src="https://i.niupic.com/images/2023/07/21/byEp.png"><br><br><img src="https://i.niupic.com/images/2023/07/21/byEq.png"><br><br>&emsp;&emsp;第一章图片的下载链接为“<a target="_blank" rel="noopener" href="https://www.dpm.org.cn/download/lights_image/id/259934/img_size/4.html%E2%80%9D%E7%AC%AC%E4%BA%8C%E5%BC%A0%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5%E4%B8%BA%E2%80%9Chttps://www.dpm.org.cn/download/lights_image/id/259933/img_size/4.html%E2%80%9D%EF%BC%8C%E6%88%91%E4%BB%AC%E4%B8%8D%E9%9A%BE%E7%9C%8B%E5%87%BA%EF%BC%8C%E4%BA%8C%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%E5%9C%A8%E4%BA%8E%E2%80%9Cid%E2%80%9D%EF%BC%8C%E5%89%8D%E8%80%85%E7%9A%84id%E4%B8%BA259934%EF%BC%8C%E5%90%8E%E8%80%85%E7%9A%84id%E4%B8%BA259933%E3%80%82%E7%8C%9C%E6%83%B3%EF%BC%9A%E6%95%85%E5%AE%AB%E5%8D%9A%E7%89%A9%E9%99%A2%E5%AE%98%E7%BD%91%E5%A3%81%E7%BA%B8%E7%9A%84%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5%EF%BC%8C%E4%B8%8D%E5%90%8C%E5%9B%BE%E7%89%87%E7%9A%84id%E6%98%AF%E9%80%92%E5%A2%9E%E5%85%B3%E7%B3%BB%E3%80%82%E4%B8%8B%E9%9D%A2%EF%BC%8C%E6%88%91%E4%BB%AC%E7%94%A8%E5%90%8C%E6%A0%B7%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%89%E5%BC%A0%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5">https://www.dpm.org.cn/download/lights_image/id/259934/img_size/4.html”第二张图片的下载链接为“https://www.dpm.org.cn/download/lights_image/id/259933/img_size/4.html”，我们不难看出，二者的区别在于“id”，前者的id为259934，后者的id为259933。猜想：故宫博物院官网壁纸的下载链接，不同图片的id是递增关系。下面，我们用同样方法分析第三张图片的下载链接</a><br><br><img src="https://i.niupic.com/images/2023/07/21/byEr.png"><br><br>&emsp;&emsp;很遗憾的是，第三张图片的id为259930，猜想不成立，笔者又查找了其他页面图片的id，最后分析的结果是：故宫博物院官网的图片下载链接中，图片的id在上传文件时是递增关系，但是由于部分壁纸被删除和修改，网站开发者对于图片地址的设置不规范，导致了交叉重合缺失等现象出现。这里笔者选择直接下载所有需要的图片，笔者找到的id最小的图片是“亚酗方罍”（下载链接：<a target="_blank" rel="noopener" href="https://www.dpm.org.cn/download/lights_image/id/237580/img_size/4.html%EF%BC%89%EF%BC%8C%E8%AF%A5%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E7%9A%84id%E4%B8%BA237580%E3%80%82">https://www.dpm.org.cn/download/lights_image/id/237580/img_size/4.html），该图片文件的id为237580。</a><br><img src="https://i.niupic.com/images/2023/07/21/byEs.png"><br></p>
-<h2 id="准备下载地址池"><a href="#准备下载地址池" class="headerlink" title="准备下载地址池"></a>准备下载地址池</h2><p>&emsp;&emsp;创建一个名为wget的文件夹，在该文件夹内创建一个名为download.txt的文件用于存放我们所要下载的所有图片的下载地址，即下载id为237580到id为259934的图片，如下图所示。<br><br><img src="https://i.niupic.com/images/2023/07/21/byEt.png"><br></p>
-<h2 id="利用辅助excel辅助合成下载地址"><a href="#利用辅助excel辅助合成下载地址" class="headerlink" title="利用辅助excel辅助合成下载地址"></a>利用辅助excel辅助合成下载地址</h2><p>&emsp;&emsp;注：此部分仅针对不会制作download中下载地址池的朋友，方法是利用excel函数的递增填充以及CONCATENATE函数来生成所有需要的下载地址池，知道如何制作的朋友请跳过<br><br><img src="https://i.niupic.com/images/2023/07/21/byEu.png"><br><br><img src="https://i.niupic.com/images/2023/07/21/byEv.png"><br><br><img src="https://i.niupic.com/images/2023/07/21/byEw.png"><br><br><img src="https://i.niupic.com/images/2023/07/21/byEx.png"><br><br><img src="https://i.niupic.com/images/2023/07/21/byEy.png%3Cbr%3E%3Cbr%3E![](https://i.niupic.com/images/2023/07/21/byEz.png)%3Cbr%3E%3Cbr%3E![](https://i.niupic.com/images/2023/07/21/byEA.png"><br></p>
-<h2 id="使用wget下载图片文件"><a href="#使用wget下载图片文件" class="headerlink" title="使用wget下载图片文件"></a>使用wget下载图片文件</h2><p>&emsp;&emsp;下载wget：<a target="_blank" rel="noopener" href="https://eternallybored.org/misc/wget/" title="点击此处下载wget">https://eternallybored.org/misc/wget/</a>（直接下载最新版的exe文件即可，不需要下载zip格式压缩包）<br><br>&emsp;&emsp;接下来将下载好的wget.exe文件复制到我们前面创建的名为wget的文件夹，并且创建一个名为cookies.txt的文件用于保存cookie（txt空白即可，不用设置任何内容）<br><br><img src="https://i.niupic.com/images/2023/07/21/byEB.png"><br><br>&emsp;&emsp;按下Windows键加R键，输入cmd回车，打开“命令提示符”<br><br><img src="https://i.niupic.com/images/2023/07/21/byEC.png"><br><br>&emsp;&emsp;输入<code>cd /d wget 文件夹的路径</code>并按下回车，移动到我们创建的wget文件夹，笔者的wget文件夹路径是“D:\ChromeXiaZai\wget”所以这里就输入<code>cd /d D:\ChromeXiaZai\wget</code><br><br><img src="https://i.niupic.com/images/2023/07/21/byED.png"><br><br>&emsp;&emsp;接下来输入以下内容并回车，开始下载<br><br>    <code>wget -c --load-cookies D:\ChromeXiaZai\wget\cookies.txt --save-cookies D:\ChromeXiaZai\wget\cookies.txt --no-check-certificate --auth-no-challenge=on --keep-session-cookies --content-disposition -i D:\ChromeXiaZai\wget\download.txt</code><br><br><br><img src="https://i.niupic.com/images/2023/07/21/byEE.png"><br><br>&emsp;&emsp;不要关闭cmd，等待它自动下载完毕所有的图片即可，不存在的下载地址会被自动跳过，这段时间可以正常利用计算机做其他事，不会影响下载<br><br>全部搞定~~~<br><br><img src="https://i.niupic.com/images/2023/07/21/byEF.png"><br><br><img src="https://i.niupic.com/images/2023/07/21/byEG.png"><br></p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>&emsp;&emsp;此文以图片文件的下载为例展示了如何使用wget工具，对于其他资源的下载大家可以自行研究，方法类似，关键是分析并找到文件的下载地址。以上就是笔者使用wget批量下载故宫壁纸的全过程，希望可以为存在大量网站文件下载需求的朋友提供帮助，欢迎对教程内容有疑问的朋友与我沟通交流。</p>
-<h2 id="梦话"><a href="#梦话" class="headerlink" title="梦话"></a>梦话</h2><p>&emsp;&emsp;绘画、陶瓷、铭刻、金银锡器、青铜器、古建、文房用品、织绣、珐琅、法书、玺印、雕塑、玉石器、漆器、钟表仪器、玻璃器、竹木牙角匏、首饰、音乐戏曲等等都是优秀的中华文化的映射。随着资本的铁蹄按照卡尔预言的那样席卷全球，人类的一切优秀文化都在逐渐变成垃圾、泡沫、快餐。“资本主义的发展程度与人的普遍痴呆程度成正相关，因此，我们有了垃圾商品、流行文化。流行、垃圾，是能产生大量交易的，这就是问题的关键。”灿烂的文化不应该被垃圾代替，优秀的文化是顶天立地的，是不被异化和机械化的。文化者,迹也。苟日新，日日新，又日新。当取其精华去其糟粕而顺应人类社会的发展，使之迸发出激荡六合的生命力。<br><br>&emsp;&emsp;中华文化是厚德载物自强不息，是损有余而盈不足，是反者道之动，是善人胜残去杀，是王侯将相宁有种乎，是勇于担当一切的大仁大智大勇，是民为贵社稷次之君为轻，是我命由我不由天，是要做顶天立地的“人”而非​“商品”，是杀尽人间不平而得大解脱……<br><br>&emsp;&emsp;笔者至死不渝。<br><br><br><img src="https://i.niupic.com/images/2023/07/21/byE9.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byE8.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEg.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEc.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEh.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEi.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEe.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEd.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEb.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEa.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEj.jpg"></p>
-<p><img src="https://i.niupic.com/images/2023/07/21/byEf.jpg"><br>（图片来自<a target="_blank" rel="noopener" href="https://www.dpm.org.cn/lights/royal.html">https://www.dpm.org.cn/lights/royal.html</a> 侵删）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/20/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -893,6 +805,76 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/31/ndwmhngbkk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="aip">
+      <meta itemprop="description" content="闻见学行">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="aip的天马行空站">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/31/ndwmhngbkk/" class="post-title-link" itemprop="url">Мрёт в наши дни с голодухи рабочий,<br>Станем ли братья мы дольше молчать?<br>Наших сподвижников юные очи<br>Может ли вид эшафота пугать?</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-31 22:02:26" itemprop="dateCreated datePublished" datetime="2023-05-31T22:02:26+08:00">2023-05-31</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -964,7 +946,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1023,12 +1005,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">5k</span>
+    <span title="站点总字数">2k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4 分钟</span>
+    <span title="站点阅读时长">2 分钟</span>
 </div>
 
 <!-- 由 Hexo & NexT.Muse 强力驱动 -->
@@ -1039,7 +1021,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3k字</span>
+  <span class="post-count">博客全站共1.2k字</span>
 </div>
     <span class="post-meta-divider">|</span>
 
